@@ -13,6 +13,7 @@ import math
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer 
 
 
 # In[2]:
@@ -56,6 +57,7 @@ def Data_Processing(data):
     Req_Data = data[Req_Columns]
     
     tokenizer = RegexpTokenizer(r'[a-zA-Z0-9_#]+')
+    lemmatizer = WordNetLemmatizer()
     stop_words = set(stopwords.words('english'))
     
     for row in range(Req_Data.shape[0]):
@@ -98,10 +100,13 @@ def Data_Processing(data):
                     elif token.casefold() in stop_words:
                         continue
                     else:
+                        token = token.casefold()
+                        token = lemmatizer.lemmatize(token)
+                        
                         if col == "text":
-                            Caption.append(token.casefold())
+                            Caption.append(token)
                         else:
-                            Comments.append(token.casefold()) 
+                            Comments.append(token) 
         
         Hashtag_string = ' '.join(str(tag) for tag in Hashtags)
         Caption_string = ' '.join(str(c) for c in Caption)
@@ -168,7 +173,7 @@ Processed_Df.to_csv("./Data/Processed_Data.csv")
 
 
 
-# In[25]:
+# In[7]:
 
 
 Filtered_Data_Analysis = []

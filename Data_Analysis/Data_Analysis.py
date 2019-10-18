@@ -37,10 +37,53 @@ def Zipf_Distribution(Data, X_Axis_Col):
 # In[3]:
 
 
-df = pd.read_csv("./Data/Processed_Data.csv")
+## https://developers.google.com/machine-learning/guides/text-classification/step-2
+
+def Stats(df):
+    
+    df["post_text_len"] = df["Cap_Tokens_Len"] + df["Com_Tokens_Len"]
+
+    Tags_mean = np.mean(df["Tags_Len"])
+    CaptionLen_mean = np.mean(df["Cap_Tokens_Len"])
+    CommentsLen_mean = np.mean(df["Com_Tokens_Len"])
+    PostTextlen_mean = np.mean(df["post_text_len"])
+
+    Tags_median = np.median(df["Tags_Len"])
+    CaptionLen_median = np.median(df["Cap_Tokens_Len"])
+    CommentsLen_median = np.median(df["Com_Tokens_Len"])
+    PostTextlen_median = np.median(df["post_text_len"])
+
+    print("Mean no. of hashtags: ", Tags_mean)
+    print("Mean length of caption: ", CaptionLen_mean)
+    print("Mean length of comments: ", CommentsLen_mean)
+    print("Mean length of post text: ", PostTextlen_mean)
+    print("\n")
+    print("Median no. of hashtags: ", Tags_median)
+    print("Median length of caption: ", CaptionLen_median)
+    print("Median length of comments: ", CommentsLen_median)
+    print("Median length of post text: ", PostTextlen_median)
+    print("\n")
+
+    ## https://developers.google.com/machine-learning/guides/text-classification/step-2-5
+
+    ## Step 1 : Calculate the number of samples/number of words per sample ratio
+    SN_Ratio_Cap = df.shape[0]/CaptionLen_median
+    SN_Ratio_Com = df.shape[0]/CommentsLen_median
+    SN_Ratio_PostText = df.shape[0]/PostTextlen_median
+
+    print("SN_Ratio_Cap: ", SN_Ratio_Cap)
+    print("SN_Ratio_Com: ", SN_Ratio_Com)
+    print("SN_Ratio_PostText: ", SN_Ratio_PostText)
 
 
 # In[4]:
+
+
+df = pd.read_csv("./Data/Processed_Data.csv")
+Stats(df)
+
+
+# In[5]:
 
 
 ## X-AXIS: No. of unique hashtags in post text content
@@ -57,7 +100,7 @@ plt.xlim(0,50)
 plt.show()
 
 
-# In[5]:
+# In[6]:
 
 
 ## Zipf distribution graph : 
@@ -76,7 +119,7 @@ plt.xlim(0,200)
 plt.show()
 
 
-# In[6]:
+# In[7]:
 
 
 ## Zipf distribution graph : 
@@ -94,7 +137,7 @@ plt.xlim(0,100)
 plt.show()
 
 
-# In[ ]:
+# In[8]:
 
 
 ## NEXT:
@@ -106,4 +149,10 @@ plt.show()
 
 ## Length of total text content of post VS No of posts
 ## Distribution of posts w.r.t. hashtags used
+
+
+# In[ ]:
+
+
+
 
