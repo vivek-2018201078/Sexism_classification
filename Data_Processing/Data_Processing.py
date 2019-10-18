@@ -168,11 +168,42 @@ Processed_Df.to_csv("./Data/Processed_Data.csv")
 
 
 
-# In[ ]:
+# In[25]:
 
 
-Filtered_Data = Filter_Data(Processed_Df,1,10,10)
-print(Filtered_Data)
+Filtered_Data_Analysis = []
+
+for i in range(1,11,1):    
+    for j in range(5,11,1):     
+        for k in range(5,11,1):
+            
+            Filtered_Data = Filter_Data(Processed_Df,i,j,k)
+            row_entry = np.array([int(i), int(j), int(k), int(Filtered_Data.shape[0])])
+            Filtered_Data_Analysis.append(row_entry)
+            
+            print(row_entry)
+            print("======================")
+
+print("========= Filtered_Data_Analysis ============")
+print(Filtered_Data_Analysis)
+        
+
+
+# In[26]:
+
+
+Filtered_Data_Analysis = pd.DataFrame(Filtered_Data_Analysis)
+Filtered_Data_Analysis.to_csv("./Data/Filtered_Data_Analysis.csv", header=["Hashtags_Threshold", 
+                                                                          "Caption_Len_Threshold",
+                                                                          "Comments_Len_Threshold",
+                                                                          "Filtered_Data_Size"])
+
+
+# In[29]:
+
+
+Filtered_Data = Filter_Data(Processed_Df,10,10,10)
+Filtered_Data.to_csv("./Data/Filtered_Data.csv")
 
 
 # In[ ]:
