@@ -63,7 +63,7 @@ def Calculate_Glove_Embedding(glove, text):
 ## Train glove embeddings for given corpus and dump trained model object in pickle file 
 ## Load this pickle file in any other code, import this python module 
 
-glove_obj = Glove_Embeddings_Train("/content/Filtered_Data.csv", "Caption_Tokens")
+glove_obj = Glove_Embeddings_Train("/content/Filtered_Positive_Data.csv", "Caption_Tokens", Glove_Vector_Size=300)
 
 import pickle
 
@@ -84,20 +84,27 @@ def Get_Glove_Embedding(GloveModel_filepath, Input_Data_filepath, colname, Outpu
   
   Data_Embeddings = []
   for row in range(data.shape[0]):
-    print(row)
+#     print(row)
     text = data.iloc[row][colname]
     text_avg_embedding = Calculate_Glove_Embedding(glove_object, text)
     Data_Embeddings.append(text_avg_embedding)
   
+  Data_Text = data[colname]
   Data_Embeddings = pd.DataFrame(Data_Embeddings)
   
-  if Output_Data_filepath:
-    Data_Embeddings.to_csv(Output_Data_filepath)
+  Text_Embedding_Map = pd.concat([Data_Text,Data_Embeddings], axis=1)
   
-  return Data_Embeddings
+  if Output_Data_filepath:
+    Text_Embedding_Map.to_csv(Output_Data_filepath)
+  
+  return Text_Embedding_Map
 
 ## Sample call to the fuction
 
-Data_Embeddings = Get_Glove_Embedding("/content/Trained_Glove_Model.pkl", "/content/Filtered_Data.csv", "Caption_Tokens", "/content/Glove_Embeddings.csv")
-print("=================================")
-print(Data_Embeddings)
+Text_Embedding_Map = Get_Glove_Embedding("/content/Trained_Glove_Model.pkl", "/content/Filtered_Positive_Data.csv", "Caption_Tokens", "/content/Positive_Glove_Embeddings.csv")
+print(Text_Embedding_Map)
+
+## Sample call to the fuction
+
+Text_Embedding_Map = Get_Glove_Embedding("/content/Trained_Glove_Model.pkl", "/content/Filtered_Positive_Data.csv", "Caption_Tokens", "/content/Positive_Glove_Embeddings.csv")
+print(Text_Embedding_Map)
