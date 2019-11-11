@@ -74,14 +74,14 @@ Size of batch (64, 128)
 No. of epochs (50, 100, 150)  
 Type of optimizers (adam, rmsprop)  
 
-* Cross-Validation results:  
+__Cross-Validation results:__    
 Best results observed with below parameter configuration:  
-Deep NN :  
-Word2Vec : rmsprop optimizer, 128 batch size, 50 epochs.  
-Glove: rmsprop optimizer, 128 batch size, 150 epochs  
-LSTM :   
-Word2Vec :   
-Glove:   
+* Deep NN :  
+  * Word2Vec : rmsprop optimizer, 128 batch size, 50 epochs.  
+  * Glove: rmsprop optimizer, 128 batch size, 150 epochs  
+* LSTM :   
+  * Word2Vec :   
+  * Glove:   
 
 
 ### RESULTS:
