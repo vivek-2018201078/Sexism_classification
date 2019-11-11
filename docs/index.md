@@ -81,9 +81,8 @@ Best results observed with below parameter configuration:
   * Word2Vec : rmsprop optimizer, 128 batch size, 50 epochs.  
   * Glove: rmsprop optimizer, 128 batch size, 150 epochs  
 * LSTM :   
-  * Word2Vec :   
-  * Glove:   
-
+  * Word2Vec : adam optimizer, 64 batch size, 150 epochs
+  * Glove: adam optimizer, 64 batch size, 100 epochs
 
 ### RESULTS:
 Accuracy comparison of different models with different word-embeddings:   
