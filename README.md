@@ -6,7 +6,6 @@ Project Team Members
 1) Vivek - vivek.patare@students.iiit.ac.in
 2) Mayank - mayank.agarwal@students.iiit.ac.in
 3) Pranjali - pranjali.ingole@students.iiit.ac.in
-4) Karthikeyan - Karthikeyan - karthikeyan.arumugam@students.iiit.ac.in
 
 Project Mentor:
   Pulkit - pulkitparikh@gmail.com
