@@ -11,10 +11,10 @@ Posts crawled using above hashtags are labeled as positive data (accounts of sex
 ### DATA PRE-PROCESSING STEPS:
 Following Data pre-processing steps are done.  
 * Tokenised text using regex tokeniser.  
-* Regex used: [a-zA-Z0-9_#]+   
-* Removes text written in languages that do not use English alphabet like Hindi, Urdu, Arabic, Chinese, Japanese, etc.  
-* Removes punctuations other than _, # (Kept hashtags as it is)  
-* Removes emojis  
+   * Regex used: [a-zA-Z0-9_#]+   
+   * Removes text written in languages that do not use English alphabet like Hindi, Urdu, Arabic, Chinese, Japanese, etc.  
+   * Removes punctuations other than _, # (Kept hashtags as it is)  
+   * Removes emojis  
 * Removed numbers from the text  
 * Stopword removal  
 * Lemmatisation  
@@ -100,10 +100,11 @@ Accuracy comparison of different models with different word-embeddings:
 | Support Vector Machine 	| Glove          	| 80.00    	|
 | Deep Neural Network    	| W2V            	| 85.93    	|
 | Deep Neural Network    	| Glove          	| 86.19    	|
-| LSTM                   	| W2V            	|          	|
+| LSTM                   	| W2V            	|  85.40   	|
 | LSTM                   	| Glove          	|          	|
 
-ANALYSIS:
-GITHUB LINK: https://github.com/karumugamio/IREProjectGroup12
+ANALYSIS:  Random Forest, Deep Neural Network and LSTM performs better among all the models implemented.  
+
+GITHUB LINK: https://github.com/karumugamio/IREProjectGroup12  
 WEBPAGE LINK: 
 
