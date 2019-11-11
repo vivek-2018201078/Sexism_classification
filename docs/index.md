@@ -80,10 +80,10 @@ __Cross-Validation results:__
 Best results observed with below parameter configuration:  
 * Deep NN :  
   * Word2Vec : rmsprop optimizer, 128 batch size, 50 epochs.  
-  * Glove: rmsprop optimizer, 128 batch size, 150 epochs  
+  * Glove: rmsprop optimizer, 128 batch size, 150 epochs.  
 * LSTM :   
-  * Word2Vec :  adam optimizer, 64 batch size, 150 epochs   
-  * Glove:   adam optimizer, 64 batch size, 100 epochs  
+  * Word2Vec :  adam optimizer, 64 batch size, 150 epochs.   
+  * Glove:   adam optimizer, 64 batch size, 100 epochs.  
 
 
 
