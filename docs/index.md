@@ -107,6 +107,6 @@ Accuracy comparison of different models with different word-embeddings:
 ANALYSIS:  Random Forest, Deep Neural Network and LSTM performs better among all the models implemented. Deep NN and LSTM model we implemented performs significantly better than all other baseline models tried. Also both word2vec and glove embedding gives similar results on each classification model with slight differences.
   
 
-GITHUB LINK: https://github.com/karumugamio/IREProjectGroup12  
-WEBPAGE LINK: 
+__GITHUB LINK__: https://github.com/karumugamio/IREProjectGroup12  
+__WEBPAGE LINK__: https://vivek-2018201078.github.io/Sexism_classification/
 
