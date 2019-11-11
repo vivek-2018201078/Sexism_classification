@@ -61,7 +61,7 @@ __SUPERVISED METHODS__:
 
 ### ARCHITECTURE
 
-![alt text](../Report.jpg)  
+<img src="../Report.jpg" width="800" />  
 __DEEP NEURAL NETWORK and LSTM:__  
 Following configuration is used for both deep neural network and LSTM models:  
 * Input Layer : word embeddings of instagram post   
