@@ -61,7 +61,7 @@ __SUPERVISED METHODS__:
 
 ### ARCHITECTURE
 
-![alt text](https://github.com/vivek-2018201078/Sexism_classification/blob/master/Report.jpg)
+<img src="../Report.jpg">
 
 __DEEP NEURAL NETWORK and LSTM:__  
 Following configuration is used for both deep neural network and LSTM models:  
