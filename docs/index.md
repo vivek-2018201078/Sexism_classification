@@ -110,5 +110,4 @@ ANALYSIS:  Random Forest, Deep Neural Network and LSTM performs better among all
   
 
 __GITHUB LINK__: https://github.com/karumugamio/IREProjectGroup12  
-__WEBPAGE LINK__: https://vivek-2018201078.github.io/Sexism_classification/
 
