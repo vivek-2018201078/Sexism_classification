@@ -61,8 +61,7 @@ __SUPERVISED METHODS__:
 
 ### ARCHITECTURE
 
-<img src="http://github.com/vivek-2018201078/Sexism_classification/blob/master/Report.jpg">
-
+![alt text](../Report.jpg)  
 __DEEP NEURAL NETWORK and LSTM:__  
 Following configuration is used for both deep neural network and LSTM models:  
 * Input Layer : word embeddings of instagram post   
