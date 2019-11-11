@@ -60,6 +60,7 @@ __SUPERVISED METHODS__:
 
 ### ARCHITECTURE
 
+![alt text](https://github.com/vivek-2018201078/Sexism_classification/blob/master/Report.jpg)
 
 __DEEP NEURAL NETWORK and LSTM:__  
 Following configuration is used for both deep neural network and LSTM models:  
@@ -101,9 +102,10 @@ Accuracy comparison of different models with different word-embeddings:
 | Deep Neural Network    	| W2V            	| 85.93    	|
 | Deep Neural Network    	| Glove          	| 86.19    	|
 | LSTM                   	| W2V            	|  85.40   	|
-| LSTM                   	| Glove          	|          	|
+| LSTM                   	| Glove          	|  85.76   	|
 
-ANALYSIS:  Random Forest, Deep Neural Network and LSTM performs better among all the models implemented.  
+ANALYSIS:  Random Forest, Deep Neural Network and LSTM performs better among all the models implemented. Deep NN and LSTM model we implemented performs significantly better than all other baseline models tried. Also both word2vec and glove embedding gives similar results on each classification model with slight differences.
+  
 
 GITHUB LINK: https://github.com/karumugamio/IREProjectGroup12  
 WEBPAGE LINK: 
