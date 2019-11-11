@@ -4,7 +4,7 @@
 
 ### DATASET 
 
-Hashtags crawled : #everydaysexism, #genderbias, #genderstereotype, #heforshe, #mencallmethings, #metoo, #misogynist, #notallmen, #questionsformen, #slutgate, #wagegap, #weareequal, #womenareinferior, #workplaceharassment, #yesallwomen  
+__Hashtags crawled__ : #everydaysexism, #genderbias, #genderstereotype, #heforshe, #mencallmethings, #metoo, #misogynist, #notallmen, #questionsformen, #slutgate, #wagegap, #weareequal, #womenareinferior, #workplaceharassment, #yesallwomen  
 For each post 100 - 5000 posts were crawled with limitation on caption length set to 10 words.  
 Posts crawled using above hashtags are labeled as positive data (accounts of sexism present). Random hashtags crawled and posts collected using them labeled as negative data(accounts of sexism absent).  
 
