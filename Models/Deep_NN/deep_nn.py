@@ -9,6 +9,8 @@ Original file is located at
 
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.model_selection import GridSearchCV
+from keras.wrappers.scikit_learn import KerasClassifier
 
 import pickle
 import pandas as pd
@@ -148,23 +150,62 @@ Accuracy = (tn+tp)/(tn + fp + fn + tp)
 
 print("Accuracy: ", Accuracy*100)
 
+## Cross Validation
+
+train_data.dropna()
+train_data = pd.DataFrame(np.nan_to_num(np.array(train_data)), columns = train_data.columns)
+train_data['Label'] = pd.to_numeric(train_data['Label'], errors='coerce')
+train_data = train_data.dropna(subset=['Label'])
+
+train_features = train_data[Embedding_Cols]    
+train_labels = train_data["Label"]
+train_labels = train_labels.astype('int')
+
+# create the sklearn model for the network
+model_CV = KerasClassifier(build_fn=Create_NN_Model, verbose=1)
+
+# we choose the initializers that came at the top in our previous cross-validation!!
+kernel_initializer = ['random_uniform']
+batches = [64*x for x in range(1, 3)]
+epochs = [50, 100, 150]
+# units = [x for x in range(50, Vector_Size, 50)]
+No_Hidden_Layers = [2]
+optimizer = ['adam', 'rmsprop']
+
+# No_Hidden_Neurons=units
+
+# grid search for initializer, batch size and number of epochs
+param_grid = dict(epochs=epochs, batch_size=batches, Kernel_Initializer=kernel_initializer, 
+                 No_Hidden_Layers=No_Hidden_Layers, Optimizer=optimizer)
+grid = GridSearchCV(estimator=model_CV, param_grid=param_grid,cv=3)
+grid_result = grid.fit(train_features, train_labels)
+
+# print results of cross validation
+
+print(f'Best Accuracy for {grid_result.best_score_} using {grid_result.best_params_}')
+means = grid_result.cv_results_['mean_test_score']
+stds = grid_result.cv_results_['std_test_score']
+params = grid_result.cv_results_['params']
+for mean, stdev, param in zip(means, stds, params):
+    print(f' mean={mean:.4}, std={stdev:.4} using {param}')
+
 ## GLOVE EMBEDDINGS
 
 Column_List = [ "Caption_Tokens"]
-Vector_Size = 300
+Vector_Size = 200
 Embedding_Cols = [str(i) for i in range(Vector_Size)]
 Column_List.extend(Embedding_Cols)
 Column_List.append("Label")
 
-Train_Embedding_FilePath = "/content/TrainData_Glove_Embeddings.csv"
-Test_Embedding_FilePath = "/content/TestData_Glove_Embeddings.csv"
+Train_Embedding_FilePath = "/content/TrainData_preTrainedGlove_Embeddings.csv"
+Test_Embedding_FilePath = "/content/TestData_preTrainedGlove_Embeddings.csv"
 NN_Model_FilePath = "/content/NN_Glove_Train_Model.pkl"
 
 train_data = pd.read_csv(Train_Embedding_FilePath, usecols=Column_List)
 test_data = pd.read_csv(Test_Embedding_FilePath, usecols=Column_List)
 
 ## Training Phase
-NN_Classifier = Create_NN_Model()
+NN_Classifier = Create_NN_Model(No_Features=200, No_Hidden_Neurons=100)
 NN_obj = Train_NN(NN_Classifier, train_data, Embedding_Cols)
 Store_Trained_NN(NN_obj, NN_Model_FilePath)
 
@@ -187,3 +228,42 @@ tn, fp, fn, tp = Confusion_Matrix.ravel()
 Accuracy = (tn+tp)/(tn + fp + fn + tp)
 
 print("Accuracy: ", Accuracy*100)
+
+## Cross Validation
+
+train_data.dropna()
+train_data = pd.DataFrame(np.nan_to_num(np.array(train_data)), columns = train_data.columns)
+train_data['Label'] = pd.to_numeric(train_data['Label'], errors='coerce')
+train_data = train_data.dropna(subset=['Label'])
+
+train_features = train_data[Embedding_Cols]    
+train_labels = train_data["Label"]
+train_labels = train_labels.astype('int')
+
+# create the sklearn model for the network
+model_CV = KerasClassifier(build_fn=Create_NN_Model, verbose=1)
+
+# we choose the initializers that came at the top in our previous cross-validation!!
+kernel_initializer = ['random_uniform']
+batches = [64*x for x in range(1, 3)]
+epochs = [50, 100, 150]
+# units = [x for x in range(50, Vector_Size, 50)]
+No_Hidden_Layers = [2]
+optimizer = ['adam', 'rmsprop']
+
+# No_Hidden_Neurons=units
+
+# grid search for initializer, batch size and number of epochs
+param_grid = dict(No_Features=[200], epochs=epochs, batch_size=batches, Kernel_Initializer=kernel_initializer, 
+                 No_Hidden_Layers=No_Hidden_Layers, Optimizer=optimizer)
+grid = GridSearchCV(estimator=model_CV, param_grid=param_grid,cv=3)
+grid_result = grid.fit(train_features, train_labels)
+
+# print results of cross validation
+
+print(f'Best Accuracy for {grid_result.best_score_} using {grid_result.best_params_}')
+means = grid_result.cv_results_['mean_test_score']
+stds = grid_result.cv_results_['std_test_score']
+params = grid_result.cv_results_['params']
+for mean, stdev, param in zip(means, stds, params):
+    print(f' mean={mean:.4}, std={stdev:.4} using {param}')
