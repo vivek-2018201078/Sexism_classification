@@ -1,6 +1,7 @@
 # Identification and analysis of Instagram posts involving Sexist Stereotyping.
 ## Major Course Project
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wN91O0Bvb7U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### DATASET 
 
