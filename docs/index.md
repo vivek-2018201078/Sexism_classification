@@ -6,9 +6,11 @@
 ### DATASET 
 
 __Hashtags crawled__ : #everydaysexism, #genderbias, #genderstereotype, #heforshe, #mencallmethings, #metoo, #misogynist, #notallmen, #questionsformen, #slutgate, #wagegap, #weareequal, #womenareinferior, #workplaceharassment, #yesallwomen  
-For each post 100 - 5000 posts were crawled with limitation on caption length set to 10 words.  
-Posts crawled using above hashtags are labeled as positive data (accounts of sexism present). Random hashtags crawled and posts collected using them labeled as negative data(accounts of sexism absent).  
-
+For each post 100 - 5000 posts were crawled with limitation on caption length set to 10 words.
+Posts crawled using above hashtags are labeled as positive data (posts related to sexism). Random
+hashtags crawled and posts collected using them labeled as negative data.
+Note - Although hashtag based data can not be definitely classify as positive or negative, it provides
+baseline distinction between what can be classified as sexist or not.
 ### DATA PRE-PROCESSING STEPS:
 Following Data pre-processing steps are done.  
 * Tokenised text using regex tokeniser.  
@@ -45,8 +47,14 @@ approaches:
 * Supervised Methods.  
 
 __UNSUPERVISED METHOD__:
-Since the data is based on pre trained word embeddings and creating vector for every post, we could assume that each vector carries semantic meaning. We applied clustering approach to divide the dataset into 2 different clusters using K-Means clustering algorithm with intention to divide posts which carry similar semantic structure. Since dataset contains both positive and negative samples, it is assumed that they will be in different clusters. Results are discussed below.   
-Purity of clusters observed in K-Means clustering algorithm : 52.5%
+Since the data is based on pre trained word embeddings and creating vector for every post, we
+could assume that each vector carries semantic meaning. We applied clustering approach to divide
+the dataset into 2 different clusters using K-Means clustering algorithm with intention to divide posts
+which carry similar semantic structure. Since dataset contains both positive and negative samples, it
+is assumed that they will be in different clusters. Results are discussed below.
+Purity of clusters observed in K-Means clustering algorithm : 52.5%.
+Also we calculated accuracy measure using K-Means on 80% data on testing on actual labels we
+get accuracy of 53% and f1 score of 38%.
 
 
 
@@ -63,22 +71,22 @@ __SUPERVISED METHODS__:
 
 <img src="Report.png" width="800" />  
   
-__DEEP NEURAL NETWORK and LSTM:__  
-Following configuration is used for both deep neural network and LSTM models:  
+__MULTI-LAYER PERCEPTRON and LSTM:__  
+Following configuration is used for both Multi-layer Perceptron and LSTM models:  
 * Input Layer : word embeddings of instagram post   
 * Hidden Layer : Two hidden layers where number of neurons is equal to half of vector size of word embedding used at the input layer and “relu” activation function is used.  
 * Output Layer : One neuron with “sigmoid” activation function. Threshold value 0.5 is used to label the post.  
 “Random normal” kernel initializer and “binary cross-entropy” loss function is used  
 
 * Hyper-Parameter tuning using cross-validation:  
-For both Deep Neural Network and LSTM models, 3-fold cross validation is performed with training data only and below parameter values were varied :  
+For both Multi-layer Perceptron and LSTM models, 3-fold cross validation is performed with training data only and below parameter values were varied :  
 Size of batch (64, 128)  
 No. of epochs (50, 100, 150)  
 Type of optimizers (adam, rmsprop)  
 
 __Cross-Validation results:__    
 Best results observed with below parameter configuration:  
-* Deep NN :  
+* MLP :  
   * Word2Vec : rmsprop optimizer, 128 batch size, 50 epochs.  
   * Glove: rmsprop optimizer, 128 batch size, 150 epochs.  
 * LSTM :   
@@ -101,12 +109,17 @@ Accuracy comparison of different models with different word-embeddings:
 | Random Forest          	| Glove          	| 87.50    	|
 | Support Vector Machine 	| W2V            	| 83.00    	|
 | Support Vector Machine 	| Glove          	| 80.00    	|
-| Deep Neural Network    	| W2V            	| 85.93    	|
-| Deep Neural Network    	| Glove          	| 86.19    	|
-| LSTM                   	| W2V            	|  85.40   	|
-| LSTM                   	| Glove          	|  85.76   	|
+| Multi-layer Perceptron    	| W2V            	| 85.93    	|
+| Multi-layer Perceptron    	| Glove          	| 86.19    	|
+| LSTM                   	| W2V            	|  60.00 (without cross validation)   	|
+| LSTM                   	| Glove          	|  61.00 (without cross validation)   	|
 
-ANALYSIS:  Random Forest, Deep Neural Network and LSTM performs better among all the models implemented. Deep NN and LSTM model we implemented performs significantly better than all other baseline models tried. Also both word2vec and glove embedding gives similar results on each classification model with slight differences.
+ANALYSIS:  Random Forest and Multi-layer Perceptron performs best among all the models implemented. MLP
+model we implemented performs significantly better than all other baseline models tried except
+Random Forest. Also both word2vec and glove embedding gives similar results on each
+classification model with slight differences. For classification using clustering, accuracy was
+significantly less by which we can conclude that the model is not able to capture semantic similarities
+in two clusters optimally.
   
 
 __GITHUB LINK__: https://github.com/karumugamio/IREProjectGroup12  
