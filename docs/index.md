@@ -114,7 +114,8 @@ Accuracy comparison of different models with different word-embeddings:
 | LSTM                   	| W2V            	|  60.00 (without cross validation)   	|
 | LSTM                   	| Glove          	|  61.00 (without cross validation)   	|
 
-ANALYSIS:  Random Forest and Multi-layer Perceptron performs best among all the models implemented. MLP
+### ANALYSIS:
+Random Forest and Multi-layer Perceptron performs best among all the models implemented. MLP
 model we implemented performs significantly better than all other baseline models tried except
 Random Forest. Also both word2vec and glove embedding gives similar results on each
 classification model with slight differences. For classification using clustering, accuracy was
