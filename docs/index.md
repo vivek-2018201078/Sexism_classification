@@ -69,7 +69,7 @@ __SUPERVISED METHODS__:
 
 ### ARCHITECTURE
 
-<img src="Report.png" width="800" />  
+<img src="Report(1).png" width="800" />  
   
 __MULTI-LAYER PERCEPTRON and LSTM:__  
 Following configuration is used for both Multi-layer Perceptron and LSTM models:  
